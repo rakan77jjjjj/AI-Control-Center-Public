@@ -1,0 +1,21 @@
+{
+    "active_project": "control_center",
+    "projects": {
+        "control_center": {
+            "name": "AI Control Center",
+            "path": ".",
+            "enabled": true,
+            "main_goal": "Supervise CLI agents with explicit owner control and safe task execution.",
+            "roles": {
+                "claude_design": "Design and content workflows",
+                "chatgpt_code": "Code, debugging and testing workflows"
+            },
+            "agents": [
+                "claude_design",
+                "chatgpt_code"
+            ],
+            "remote_push": false,
+            "backup_enabled": true
+        }
+    }
+}

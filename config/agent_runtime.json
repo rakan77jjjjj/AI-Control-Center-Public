@@ -1,0 +1,26 @@
+﻿{
+    "max_concurrent_agents": 1,
+
+    "task_timeout_seconds": 7200,
+
+    "auto_retry": false,
+
+    "claude": {
+        "permission_mode": "default",
+        "max_turns": 40
+    },
+
+    "codex": {
+        "sandbox": "workspace-write",
+        "approval_policy": "never",
+        "ephemeral": false
+    },
+
+    "safety": {
+        "fail_closed": true,
+        "allow_yolo": false,
+        "allow_permission_bypass": false,
+        "allow_automatic_git_push": false,
+        "allow_automatic_main_merge": false
+    }
+}

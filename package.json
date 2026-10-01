@@ -1,0 +1,16 @@
+{
+  "name": "ai-control-center",
+  "version": "0.5.0-alpha.1",
+  "private": false,
+  "description": "Local-first supervised multi-agent control center for CLI coding and design agents",
+  "type": "module",
+  "scripts": {
+    "start": "python app/server.py",
+    "start:legacy": "node app/server/server.mjs",
+    "doctor": "python app/real_agents.py",
+    "doctor:agents": "python app/real_agents.py",
+    "check": "python -m py_compile app/server.py app/real_agents.py app/workspace.py app/local_tools.py app/execution_support.py && node --check app/server/server.mjs && node --check app/server/owner-policy.mjs",
+    "test": "python -m unittest discover -s test -p \"test_*.py\" && node --test test/*.test.mjs",
+    "smoke": "python scripts/smoke_test.py"
+  }
+}

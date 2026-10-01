@@ -1,0 +1,19 @@
+﻿{
+    "default_policy": "deny",
+
+    "claude_design": {
+        "read_project": true,
+        "write_project": true,
+        "delete_files": false,
+        "outside_project": false,
+        "remote_upload": false
+    },
+
+    "chatgpt_code": {
+        "read_project": true,
+        "write_project": true,
+        "delete_files": false,
+        "outside_project": false,
+        "remote_upload": false
+    }
+}

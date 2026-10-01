@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>مركز التحكم بالذكاء</title>
+
+    <link
+        rel="stylesheet"
+        href="/static/css/style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<header class="topbar">
+
+    <div>
+
+        <h1>
+            مركز التحكم بالذكاء
+        </h1>
+
+        <p>
+            أعلى جودة بأقل استهلاك ممكن للكريدت
+        </p>
+
+    </div>
+
+
+    <div class="top-status">
+
+        <span
+            id="systemDot"
+            class="dot"
+        ></span>
+
+        <span id="systemStatus">
+            جاري الفحص...
+        </span>
+
+    </div>
+
+</header>
+
+
+<main class="container">
+<section class="card" dir="ltr">
+<h2>Send a task to Claude or Codex</h2>
+<p>Choose a project and agent in New task. Save queues locally; Send now launches once. Retries return to the queue and need a separate Start.</p>
+<p>QUEUED · RUNNING · WAITING · WAITING FOR CREDIT · COMPLETED · FAILED · CANCELLED</p>
+<p>Infrastructure smoke: one short paid CLI request in an isolated Control Center directory, no tools or Last Light work.</p>
+<button class="btn secondary" data-smoke onclick="smokeAgent('claude_design')">Smoke Claude (one request)</button>
+<button class="btn secondary" data-smoke onclick="smokeAgent('chatgpt_code')">Smoke Codex (one request)</button>
+</section>
+
+
+<section class="command-bar">
+
+    <button
+        class="btn success"
+        onclick="systemAction('start')"
+    >
+        تشغيل النظام
+    </button>
+
+    <button
+        class="btn warning"
+        onclick="systemAction('pause')"
+    >
+        إيقاف مؤقت
+    </button>
+
+    <button
+        class="btn secondary"
+        onclick="systemAction('stop')"
+    >
+        إيقاف النظام
+    </button>
+
+    <button
+        class="btn danger"
+        onclick="emergencyStop()"
+    >
+        إيقاف طوارئ
+    </button>
+
+    <button
+        class="btn outline"
+        onclick="resetEmergency()"
+    >
+        إعادة ضبط الطوارئ
+    </button>
+
+</section>
+
+
+<section class="grid">
+
+
+<article class="card">
+
+    <div class="card-title">
+        المشروع الحالي
+    </div>
+
+    <div
+        id="projectName"
+        class="big-text"
+    >
+        ...
+    </div>
+
+    <div class="info-row">
+
+        <span>وضع التشغيل</span>
+
+        <strong id="operationMode">
+            ...
+        </strong>
+
+    </div>
+
+    <div class="info-row">
+
+        <span>قاعدة النظام</span>
+
+        <strong class="good">
+            جودة قصوى / كريدت أدنى
+        </strong>
+
+    </div>
+
+</article>
+
+
+<article class="card">
+
+    <div class="card-title">
+        إجمالي المهام
+    </div>
+
+    <div class="stats five">
+
+        <div>
+            <strong id="pendingTasks">0</strong>
+            <span>بانتظار</span>
+        </div>
+
+        <div>
+            <strong id="runningTasks">0</strong>
+            <span>تعمل</span>
+        </div>
+
+        <div>
+            <strong id="pausedTasks">0</strong>
+            <span>متوقفة</span>
+        </div>
+
+        <div>
+            <strong id="creditTasks">0</strong>
+            <span>بانتظار كريدت</span>
+        </div>
+
+        <div>
+            <strong id="failedTasks">0</strong>
+            <span>فشلت</span>
+        </div>
+
+    </div>
+
+</article>
+
+
+<article class="card">
+
+    <div class="card-title">
+        حماية الكريدت
+    </div>
+
+    <div class="safety-list">
+
+        <div>
+
+            <span>
+                ترجمة بالذكاء
+            </span>
+
+            <button
+                id="aiTranslationButton"
+                class="toggle-button"
+                onclick="toggleProtection('ai_translation')"
+            >
+                ...
+            </button>
+
+        </div>
+
+
+        <div>
+
+            <span>
+                تحليل الصور
+            </span>
+
+            <button
+                id="imageAnalysisButton"
+                class="toggle-button"
+                onclick="toggleProtection('ai_screenshot_analysis')"
+            >
+                ...
+            </button>
+
+        </div>
+
+
+        <div>
+
+            <span>
+                رفع Git بعيد
+            </span>
+
+            <button
+                id="remotePushButton"
+                class="toggle-button"
+                onclick="toggleProtection('remote_git_push')"
+            >
+                ...
+            </button>
+
+        </div>
+
+
+        <div>
+
+            <span>
+                العمل المحلي
+            </span>
+
+            <button
+                id="localFirstButton"
+                class="toggle-button"
+                onclick="toggleProtection('local_first')"
+            >
+                ...
+            </button>
+
+        </div>
+
+    </div>
+
+</article>
+
+
+<article class="card">
+
+    <div class="card-title">
+        الأرشيف
+    </div>
+
+    <div class="stats three">
+
+        <div>
+            <strong id="archiveCompleted">0</strong>
+            <span>مكتملة</span>
+        </div>
+
+        <div>
+            <strong id="archiveFailed">0</strong>
+            <span>فاشلة</span>
+        </div>
+
+        <div>
+            <strong id="archiveCancelled">0</strong>
+            <span>ملغاة</span>
+        </div>
+
+    </div>
+
+</article>
+
+
+</section>
+
+
+
+<section class="section workspace-section">
+
+    <div class="section-head">
+
+        <div>
+            <h2>مساحة عمل المشروع</h2>
+
+            <p>
+                اختر المشروع والملف أو المجلد الذي سيعمل عليه الوكلاء
+            </p>
+        </div>
+
+        <button
+            class="btn success small"
+            onclick="toggleAddProject()"
+        >
+            + إضافة مشروع
+        </button>
+
+    </div>
+
+
+    <div class="workspace-top">
+
+        <div>
+
+            <label>
+                المشروع الحالي
+            </label>
+
+            <select
+                id="workspaceProject"
+                onchange="selectWorkspaceProject()"
+            ></select>
+
+        </div>
+
+
+        <div>
+
+            <label>
+                مسار المشروع
+            </label>
+
+            <div
+                id="workspaceRoot"
+                class="path-box"
+            >
+                ...
+            </div>
+
+        </div>
+
+
+        <div>
+
+            <label>
+                نطاق العمل الحالي
+            </label>
+
+            <div
+                id="workspaceCurrentScope"
+                class="path-box"
+            >
+                المشروع كامل
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div
+        id="addProjectForm"
+        class="workspace-form hidden"
+    >
+
+        <h3>
+            إضافة مشروع جديد
+        </h3>
+
+        <input
+            id="newProjectName"
+            placeholder="اسم المشروع"
+        >
+
+        <input
+            id="newProjectPath"
+            placeholder="C:\مسار\المشروع"
+            dir="ltr"
+        >
+
+        <textarea
+            id="newProjectGoal"
+            placeholder="الهدف الأساسي للمشروع"
+        ></textarea>
+
+        <input
+            id="newClaudeRole"
+            placeholder="دور Claude — مثال: التصميم والمحتوى"
+        >
+
+        <input
+            id="newChatGPTRole"
+            placeholder="دور ChatGPT — مثال: البرمجة والاختبارات"
+        >
+
+        <div class="actions">
+
+            <button
+                class="btn success"
+                onclick="addWorkspaceProject()"
+            >
+                حفظ المشروع
+            </button>
+
+            <button
+                class="btn secondary"
+                onclick="toggleAddProject()"
+            >
+                إلغاء
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="workspace-grid">
+
+
+        <div class="workspace-panel">
+
+            <h3>
+                المهمة الأساسية للمشروع
+            </h3>
+
+            <textarea
+                id="workspaceGoal"
+                placeholder="مثال: بناء لعبة رعب ثلاثية الأبعاد..."
+            ></textarea>
+
+
+            <h3>
+                توزيع الأدوار
+            </h3>
+
+            <label>
+                Claude
+            </label>
+
+            <input
+                id="workspaceClaudeRole"
+                placeholder="دوره في هذا المشروع"
+            >
+
+
+            <label>
+                ChatGPT
+            </label>
+
+            <input
+                id="workspaceChatGPTRole"
+                placeholder="دوره في هذا المشروع"
+            >
+
+
+            <button
+                class="btn success"
+                onclick="saveWorkspaceProject()"
+            >
+                حفظ الهدف والأدوار
+            </button>
+
+        </div>
+
+
+        <div class="workspace-panel">
+
+            <div class="browser-head">
+
+                <div>
+
+                    <h3>
+                        ملفات المشروع
+                    </h3>
+
+                    <div
+                        id="workspaceBrowsePath"
+                        class="path-small"
+                    >
+                        /
+                    </div>
+
+                </div>
+
+                <button
+                    id="workspaceParentButton"
+                    class="btn secondary small"
+                    onclick="browseWorkspaceParent()"
+                >
+                    مجلد أعلى
+                </button>
+
+            </div>
+
+
+            <div
+                id="workspaceItems"
+                class="file-browser"
+            ></div>
+
+        </div>
+
+    </div>
+
+
+    <div class="scope-control">
+
+        <div>
+
+            <label>
+                نوع النطاق
+            </label>
+
+            <select id="workspaceScopeType">
+
+                <option value="project">
+                    المشروع كامل
+                </option>
+
+                <option value="folder">
+                    مجلد محدد
+                </option>
+
+                <option value="file">
+                    ملف محدد
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="scope-path-box">
+
+            <label>
+                المختار
+            </label>
+
+            <div
+                id="workspaceSelectedPath"
+                class="path-box"
+            >
+                المشروع كامل
+            </div>
+
+        </div>
+
+
+        <button
+            class="btn success"
+            onclick="applyWorkspaceScope()"
+        >
+            اعتماد نطاق العمل
+        </button>
+
+    </div>
+
+
+    <div class="workspace-note">
+
+        يمكن اختيار نفس الملف أو المجلد للوكيلين.
+        عند اختيار «كلاهما» في المهمة سيُنشئ المدير
+        مهمة مستقلة لكل وكيل على نفس النطاق،
+        مع الاحتفاظ بدور كل واحد حسب المشروع.
+
+    </div>
+
+</section>
+
+
+<section class="section">
+
+    <div class="section-head">
+
+        <div>
+
+            <h2>
+                الوكلاء والكريدت
+            </h2>
+
+            <p>
+                المتابعة محلية ولا نطلب تقارير دورية من الوكلاء
+            </p>
+
+        </div>
+
+
+        <div class="actions">
+
+            <button
+                class="btn success small"
+                onclick="allAgents('start')"
+            >
+                تشغيل الكل
+            </button>
+
+            <button
+                class="btn warning small"
+                onclick="allAgents('pause')"
+            >
+                إيقاف مؤقت للكل
+            </button>
+
+            <button
+                class="btn danger small"
+                onclick="allAgents('stop')"
+            >
+                إيقاف الكل
+            </button>
+
+            <button
+                class="btn credit small"
+                onclick="creditReturned(null)"
+            >
+                ⚠ الكريدت رجع — استكمال الكل
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div
+        id="agentsContainer"
+        class="agent-grid"
+    ></div>
+
+</section>
+
+
+<section class="section">
+
+    <div class="section-head">
+
+        <div>
+
+            <h2>
+                المهام
+            </h2>
+
+            <p>
+                تحفظ على الجهاز حتى لو أغلقت النظام أو انتهى الكريدت
+            </p>
+
+        </div>
+
+        <button
+            class="btn success"
+            onclick="toggleTaskForm()"
+        >
+            + مهمة جديدة
+        </button>
+
+    </div>
+
+
+    <div
+        id="taskForm"
+        class="task-form hidden"
+    >
+
+        <input
+            id="taskTitle"
+            placeholder="اسم المهمة"
+        >
+
+        <textarea
+            id="taskDescription"
+            placeholder="اكتب المطلوب بدقة..."
+        ></textarea>
+
+
+        <div class="form-grid">
+
+            <label>Project / المشروع <select id="taskProject"></select></label>
+            <label>Agent / الوكيل</label>
+            <select id="taskAgent">
+            </select>
+
+
+            <select id="taskPriority">
+
+                <option value="critical">
+                    حرجة — أعلى أولوية
+                </option>
+
+                <option value="high">
+                    عالية
+                </option>
+
+                <option
+                    value="normal"
+                    selected
+                >
+                    عادية
+                </option>
+
+                <option value="low">
+                    منخفضة
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div
+            id="taskEstimate"
+            class="estimate-box"
+        >
+            التقدير سيظهر بعد اختيار الوكيل وكتابة المهمة.
+        </div>
+
+
+        <div class="actions">
+
+            <button
+                class="btn success"
+                onclick="createTask(false)"
+            >
+                حفظ فقط — 0 كريدت
+            </button>
+
+            <button
+                class="btn credit"
+                onclick="createTask(true)"
+            >
+                ⚠ إرسال الآن
+            </button>
+
+            <button
+                class="btn secondary"
+                onclick="toggleTaskForm()"
+            >
+                إلغاء
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div
+        id="tasksContainer"
+        class="task-list"
+    ></div>
+
+</section>
+
+
+<section class="section">
+
+    <div class="section-head">
+
+        <div>
+
+            <h2>
+                أرشفة المهام
+            </h2>
+
+            <p>
+                لا نحذف التاريخ؛ ننقله للأرشيف المحلي
+            </p>
+
+        </div>
+
+        <div class="actions">
+
+            <button
+                class="btn secondary small"
+                onclick="archiveStatus('completed')"
+            >
+                أرشفة المكتملة
+            </button>
+
+            <button
+                class="btn secondary small"
+                onclick="archiveStatus('failed')"
+            >
+                أرشفة الفاشلة
+            </button>
+
+            <button
+                class="btn secondary small"
+                onclick="archiveStatus('cancelled')"
+            >
+                أرشفة الملغاة
+            </button>
+
+            <button
+                class="btn outline small"
+                onclick="archiveAll()"
+            >
+                أرشفة الجميع
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section">
+
+    <div class="section-head">
+
+        <div>
+
+            <h2>
+                الموافقات
+            </h2>
+
+            <p>
+                القرارات الحساسة تحتاج موافقتك
+            </p>
+
+        </div>
+
+        <div class="actions">
+
+            <button
+                class="btn success small"
+                onclick="approvalAll(true)"
+            >
+                قبول الكل
+            </button>
+
+            <button
+                class="btn danger small"
+                onclick="approvalAll(false)"
+            >
+                رفض الكل
+            </button>
+
+        </div>
+
+    </div>
+
+    <div
+        id="approvalsContainer"
+        class="approval-list"
+    ></div>
+
+</section>
+
+
+
+
+<section
+    id="v32LocalTools"
+    class="section v32-section"
+>
+
+    <div class="section-head">
+
+        <div>
+
+            <h2>
+                المراقبة المحلية والنسخ
+            </h2>
+
+            <p>
+                يعرف المدير ما تغير من الملفات بدون سؤال الوكلاء وبدون استهلاك كريدت
+            </p>
+
+        </div>
+
+        <div class="actions">
+
+            <button
+                id="v32AutoButton"
+                class="btn secondary small"
+                onclick="v32ToggleAuto()"
+            >
+                تشغيل المراقبة التلقائية
+            </button>
+
+            <button
+                class="btn outline small"
+                onclick="v32Load()"
+            >
+                تحديث العرض
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="v32-grid">
+
+        <article class="v32-card">
+
+            <div class="card-title">
+                مراقبة الملفات
+            </div>
+
+            <div class="v32-stats">
+
+                <div>
+                    <strong id="v32WatchedFiles">0</strong>
+                    <span>ملف مراقب</span>
+                </div>
+
+                <div>
+                    <strong id="v32Created">0</strong>
+                    <span>جديد</span>
+                </div>
+
+                <div>
+                    <strong id="v32Modified">0</strong>
+                    <span>معدل</span>
+                </div>
+
+                <div>
+                    <strong id="v32Deleted">0</strong>
+                    <span>محذوف</span>
+                </div>
+
+            </div>
+
+            <div class="info-row">
+                <span>آخر فحص</span>
+                <strong id="v32LastScan">لم يبدأ</strong>
+            </div>
+
+            <div class="info-row">
+                <span>مدة آخر فحص</span>
+                <strong id="v32ScanDuration">-</strong>
+            </div>
+
+            <div class="info-row">
+                <span>نطاق المراقبة</span>
+                <strong id="v32Scope">-</strong>
+            </div>
+
+            <div class="actions v32-actions">
+
+                <button
+                    class="btn success small"
+                    onclick="v32CreateBaseline()"
+                >
+                    بناء خط أساس
+                </button>
+
+                <button
+                    class="btn secondary small"
+                    onclick="v32ScanNow()"
+                >
+                    فحص الآن
+                </button>
+
+            </div>
+
+            <div class="workspace-note">
+                المراقبة التلقائية متوقفة افتراضيًا لتقليل الضغط على الجهاز.
+                عند تشغيلها يتم فحص الملفات محليًا فقط.
+            </div>
+
+        </article>
+
+        <article class="v32-card">
+
+            <div class="card-title">
+                Snapshot محلي
+            </div>
+
+            <input
+                id="v32SnapshotLabel"
+                class="v32-input"
+                placeholder="اسم اختياري للنسخة"
+            >
+
+            <button
+                class="btn success"
+                onclick="v32CreateSnapshot()"
+            >
+                إنشاء Snapshot للنطاق الحالي
+            </button>
+
+            <div class="workspace-note">
+                المشروع الكامل قد يستهلك مساحة تخزين كبيرة،
+                لكنه لا يستهلك كريدت.
+            </div>
+
+            <div class="info-row">
+                <span>عدد النسخ</span>
+                <strong id="v32SnapshotCount">0</strong>
+            </div>
+
+        </article>
+
+    </div>
+
+    <div class="v32-subsection">
+
+        <div class="section-head">
+
+            <div>
+                <h3>آخر تغييرات الملفات</h3>
+                <p>سجل محلي مستنتج من الملفات نفسها</p>
+            </div>
+
+        </div>
+
+        <div
+            id="v32Events"
+            class="v32-list"
+        >
+            <div class="empty">
+                لا يوجد سجل حتى الآن
+            </div>
+        </div>
+
+    </div>
+
+    <div class="v32-subsection">
+
+        <div class="section-head">
+
+            <div>
+                <h3>Snapshots</h3>
+                <p>الاستعادة تنشئ نسخة أمان تلقائيًا قبل الكتابة</p>
+            </div>
+
+        </div>
+
+        <div
+            id="v32Snapshots"
+            class="v32-list"
+        >
+            <div class="empty">
+                لا توجد نسخ بعد
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<div
+    id="toast"
+    class="toast"
+></div>
+
+
+<section class="card" dir="ltr">
+<h2>Project outputs</h2>
+<label>Project <select id="outputProject" onchange="loadOutputs()"></select></label>
+<button class="btn secondary" onclick="loadOutputs()">Refresh outputs</button>
+<p>Original files are referenced, not copied. Attribution is based on changes observed during execution.</p>
+<div id="outputGallery" class="output-gallery"></div>
+</section>
+<script src="/static/js/app.js"></script>
+
+
+</body>
+</html>

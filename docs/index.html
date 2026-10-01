@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="AI Control Center — بيئة ذكاء اصطناعي محلية لويندوز تجمع المساعد والذاكرة والمشاريع والتدريب والأدوات مع تحكم واضح بالصلاحيات.">
+  <title>AI Control Center — @rakan77jjjjj</title>
+  <style>
+    :root{
+      --bg:#080b12;--panel:#111725;--panel2:#151d2d;--text:#f4f7fb;--muted:#a9b4c6;
+      --accent:#7c9cff;--accent2:#58e0bb;--line:#263148;--warn:#f0c96a;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;background:
+      radial-gradient(circle at 80% 0%,rgba(124,156,255,.15),transparent 35%),
+      radial-gradient(circle at 10% 20%,rgba(88,224,187,.10),transparent 30%),var(--bg);color:var(--text);line-height:1.8}
+    a{color:inherit}
+    .wrap{width:min(1100px,92%);margin:auto}
+    nav{display:flex;justify-content:space-between;align-items:center;padding:22px 0;gap:20px}
+    .brand{font-weight:800;letter-spacing:.2px}
+    nav a{text-decoration:none;color:var(--muted)}
+    .hero{padding:72px 0 52px;display:grid;grid-template-columns:1.35fr .65fr;gap:32px;align-items:center}
+    .badge{display:inline-block;border:1px solid var(--line);background:rgba(255,255,255,.03);padding:6px 12px;border-radius:999px;color:var(--accent2);font-size:14px}
+    h1{font-size:clamp(42px,7vw,78px);line-height:1.05;margin:18px 0}
+    h2{font-size:30px;margin:0 0 12px}
+    h3{margin:0 0 6px}
+    .lead{font-size:20px;color:var(--muted);max-width:760px}
+    .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+    .btn{display:inline-block;padding:12px 18px;border-radius:12px;text-decoration:none;font-weight:700;border:1px solid var(--line)}
+    .primary{background:var(--accent);color:#07101e;border-color:transparent}
+    .secondary{background:rgba(255,255,255,.04)}
+    .status{background:linear-gradient(160deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:22px;padding:24px}
+    .status strong{font-size:28px;display:block}
+    section{padding:42px 0}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .card{background:rgba(17,23,37,.82);border:1px solid var(--line);border-radius:18px;padding:20px}
+    .card p{margin:5px 0 0;color:var(--muted)}
+    .flow{white-space:pre-line;background:#060912;border:1px solid var(--line);border-radius:16px;padding:22px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;direction:ltr;text-align:center;color:#dce5f5}
+    .note{border-right:4px solid var(--accent2);background:rgba(88,224,187,.06);padding:18px 20px;border-radius:12px;color:#dceee8}
+    .roadmap{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    footer{border-top:1px solid var(--line);margin-top:40px;padding:30px 0 48px;color:var(--muted)}
+    @media(max-width:800px){.hero,.grid,.roadmap{grid-template-columns:1fr}.hero{padding-top:38px}nav{align-items:flex-start}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <div class="brand">AI Control Center</div>
+    <a href="https://github.com/rakan77jjjjj">GitHub — @rakan77jjjjj</a>
+  </nav>
+
+  <main>
+    <header class="hero">
+      <div>
+        <span class="badge">4.7.1 Beta • Windows • Local-first</span>
+        <h1>مساعد ذكاء اصطناعي<br>تملكه أنت.</h1>
+        <p class="lead">AI Control Center مشروع أبنيه ليكون مكانًا واحدًا على ويندوز يجمع الذكاء المحلي، الذاكرة، المشاريع، التدريب والأدوات، مع بقاء المستخدم هو صاحب القرار في الصلاحيات والملفات والاتصال بالإنترنت.</p>
+        <div class="actions">
+          <a class="btn primary" href="https://github.com/rakan77jjjjj/AI-Control-Center-Public">المشروع على GitHub</a>
+          <a class="btn secondary" href="#features">وش الموجود الآن؟</a>
+        </div>
+      </div>
+      <aside class="status">
+        <span style="color:var(--muted)">الحالة الحالية</span>
+        <strong>4.7.1 Beta</strong>
+        <p style="color:var(--muted)">العمل الجاري الآن على 4.8: التدريب الحقيقي للـStudent ونظام تحديث يحافظ على بيانات المستخدم.</p>
+      </aside>
+    </header>
+
+    <section>
+      <h2>المشكلة التي أحاول حلها</h2>
+      <p class="lead">ما أبي الذكاء يكون مجرد صندوق محادثة. أبي بيئة أقدر أربطها بمشاريعي وأدواتي، لكن بدون أن أعطي الموديل وصولًا مفتوحًا للجهاز.</p>
+      <div class="flow">Task
+↓
+Project Context
+↓
+Allowed Files / Tools
+↓
+Permission Check
+↓
+User Approval when needed
+↓
+Execution + Audit</div>
+    </section>
+
+    <section id="features">
+      <h2>وش وصل له المشروع؟</h2>
+      <div class="grid">
+        <article class="card"><h3>ذكاء محلي</h3><p>دعم تشغيل نموذج محلي مع توجه Local-first بدل الاعتماد الإجباري على خدمة سحابية.</p></article>
+        <article class="card"><h3>ذاكرة وبيانات محلية</h3><p>بيئة المستخدم وذاكرته وملفاته لا تأتي مدمجة مع النسخة العامة.</p></article>
+        <article class="card"><h3>إدارة مشاريع</h3><p>أساس للتعامل مع المشاريع ومساحات العمل بدل محادثة منفصلة بلا سياق.</p></article>
+        <article class="card"><h3>Teacher + Dataset</h3><p>نظام يبني أمثلة تدريب ويجهز Dataset قبل مرحلة تدريب الـStudent.</p></article>
+        <article class="card"><h3>تجهيز التدريب</h3><p>بيئة تدريب منفصلة وفحوصات GPU وCUDA وتجهيز أولي لـLoRA / QLoRA.</p></article>
+        <article class="card"><h3>Action Router</h3><p>الموديل يطلب الفعل، والنظام يتحقق من الصلاحية والموافقة قبل التنفيذ.</p></article>
+        <article class="card"><h3>Git وGitHub</h3><p>أساس للتعامل مع المشاريع والإصدارات وسجل التغييرات.</p></article>
+        <article class="card"><h3>Setup Manager</h3><p>تجهيز المكونات الاختيارية بدل فرض كل الاعتماديات على المستخدم من البداية.</p></article>
+        <article class="card"><h3>Windows Installer</h3><p>المشروع يستهدف تجربة تطبيق سطح مكتب على ويندوز بدل تشغيل مجموعة سكربتات يدويًا.</p></article>
+      </div>
+    </section>
+
+    <section>
+      <h2>الأمان قبل القوة</h2>
+      <p class="lead">من القرارات الأساسية في المشروع: لا يتم تمرير كلام الموديل مباشرة إلى PowerShell أو CMD.</p>
+      <div class="flow">AI
+↓
+Action Router
+↓
+Permission Check
+↓
+Owner Approval
+↓
+Execution
+↓
+Audit Log</div>
+    </section>
+
+    <section>
+      <h2>الخصوصية</h2>
+      <div class="note">النسخة العامة لا تأتي مع ذاكرتي الشخصية أو مشاريعي أو Dataset الخاص بي أو مفاتيحي. كل تثبيت يبدأ ببيئته الخاصة، وأي خدمة خارجية أو صلاحية إضافية تكون باختيار المستخدم.</div>
+    </section>
+
+    <section>
+      <h2>وش جاي بعد؟</h2>
+      <div class="roadmap">
+        <article class="card"><h3>4.8 — Real Training + Updates</h3><p>اختيار Base Model، تدريب LoRA / QLoRA حقيقي، Progress وEpoch وStep وLoss، مراقبة VRAM، Safe Stop، Checkpoints، حفظ Adapter، واختبار النموذج قبل وبعد التدريب. بالإضافة إلى Backup / Verify / Update / Rollback مع الحفاظ على بيانات المستخدم.</p></article>
+        <article class="card"><h3>4.9 — Stable Foundation</h3><p>تركيز على الثبات، First Run، الأخطاء، الـInstaller، اختبار الأجهزة النظيفة، والتأكد أن كل وظيفة ظاهرة للمستخدم تعمل فعلًا.</p></article>
+      </div>
+    </section>
+
+    <section>
+      <h2>كيف أبنيه؟</h2>
+      <p class="lead">أخطط المشروع وأوثق قراراته ومراحله، أطور وأختبر على ويندوز، وأستخدم أدوات الذكاء الاصطناعي للمراجعة والبرمجة وحل المشاكل مع إبقاء Git وسجل الاختبارات والقرارات كمرجع للعمل.</p>
+      <p>الأدوات المستخدمة تشمل Python، Git، GitHub، نماذج محلية عبر Ollama، وأدوات ذكاء اصطناعي مثل ChatGPT وClaude للمساعدة في التطوير والمراجعة.</p>
+    </section>
+  </main>
+
+  <footer>
+    <strong style="color:var(--text)">@rakan77jjjjj</strong><br>
+    مطور AI Control Center
+  </footer>
+</div>
+</body>
+</html>

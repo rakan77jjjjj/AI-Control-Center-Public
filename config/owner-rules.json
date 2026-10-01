@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "owner": {
+    "authority": "FINAL",
+    "approvalTokenSource": "OWNER_EXPLICIT_ACTION_ONLY"
+  },
+  "defaults": {
+    "decision": "DENY",
+    "failClosed": true,
+    "linkedProjectsReadOnly": true,
+    "agentMayModifyPolicy": false,
+    "agentMayGrantOwnApproval": false
+  },
+  "allowedWithoutApproval": [
+    "control.readState",
+    "filesystem.read",
+    "git.status",
+    "git.diff",
+    "git.log",
+    "git.show",
+    "project.watchReadOnly"
+  ],
+  "ownerApprovalRequired": [
+    "filesystem.write",
+    "filesystem.overwrite",
+    "filesystem.delete",
+    "git.branchCreate",
+    "git.branchDelete",
+    "git.commit",
+    "git.push",
+    "git.merge",
+    "dependency.install",
+    "network.enableRemoteAccess",
+    "secrets.change",
+    "agent.connect",
+    "agent.permissionEscalate",
+    "project.detach"
+  ],
+  "agentForbidden": [
+    "ownerPolicy.modify",
+    "ownerApproval.selfGrant",
+    "git.forcePush",
+    "git.rewriteMainHistory",
+    "filesystem.deleteProjectRoot",
+    "secrets.expose"
+  ],
+  "protectedBranches": [
+    "main"
+  ],
+  "projectDetach": {
+    "deletesProjectFiles": false,
+    "requiresExplicitOwnerApproval": true
+  },
+  "conflictRule": "STOP_AND_REQUEST_OWNER_APPROVAL"
+}

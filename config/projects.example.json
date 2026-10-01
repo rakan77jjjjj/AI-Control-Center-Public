@@ -1,0 +1,21 @@
+{
+    "active_project": "example_project",
+    "projects": {
+        "example_project": {
+            "name": "Example Project",
+            "path": "../Example-Project",
+            "enabled": true,
+            "main_goal": "Describe the project goal here.",
+            "roles": {
+                "claude_design": "Design and content",
+                "chatgpt_code": "Code and tests"
+            },
+            "agents": [
+                "claude_design",
+                "chatgpt_code"
+            ],
+            "remote_push": false,
+            "backup_enabled": true
+        }
+    }
+}

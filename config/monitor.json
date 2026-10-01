@@ -1,0 +1,22 @@
+{
+    "recommended_scan_interval_seconds": 15,
+    "max_files_per_scan": 20000,
+    "recent_events_limit": 60,
+    "excluded_directories": [
+        ".git",
+        "__pycache__",
+        "node_modules",
+        ".venv",
+        "venv",
+        "env",
+        "backups",
+        "archive",
+        "DerivedDataCache",
+        "Intermediate",
+        "Temp"
+    ],
+    "excluded_files": [
+        ".DS_Store",
+        "Thumbs.db"
+    ]
+}

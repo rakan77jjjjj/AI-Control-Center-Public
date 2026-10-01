@@ -1,0 +1,16 @@
+{
+    "claude_design": {
+        "path": "../Your-Design-Worktree",
+        "provider": "claude_cli",
+        "command": "claude",
+        "role": "design",
+        "allow_write": true
+    },
+    "chatgpt_code": {
+        "path": "../Your-Code-Worktree",
+        "provider": "codex_cli",
+        "command": "codex",
+        "role": "code",
+        "allow_write": true
+    }
+}

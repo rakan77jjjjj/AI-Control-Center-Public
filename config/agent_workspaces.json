@@ -1,0 +1,16 @@
+{
+    "claude_design": {
+        "path": "",
+        "provider": "claude_cli",
+        "command": "claude",
+        "role": "design",
+        "allow_write": true
+    },
+    "chatgpt_code": {
+        "path": "",
+        "provider": "codex_cli",
+        "command": "codex",
+        "role": "code",
+        "allow_write": true
+    }
+}

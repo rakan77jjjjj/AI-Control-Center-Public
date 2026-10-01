@@ -1,0 +1,61 @@
+{
+    "agents": {
+        "claude_design": {
+            "display_name": "Claude Design Agent",
+            "role": "design_manager",
+            "enabled": true,
+            "status": "configured",
+            "responsibilities": [
+                "blender",
+                "environment_art",
+                "level_design",
+                "side_view_composition",
+                "camera_authoring",
+                "lighting",
+                "materials",
+                "weather",
+                "animation",
+                "authored_markers",
+                "gltf_export",
+                "asset_integration"
+            ],
+            "credit_policy": {
+                "minimize_usage": true,
+                "automatic_retry": false,
+                "image_analysis": true
+            },
+            "provider": "claude_cli",
+            "command": "claude",
+            "engine": "Claude Code account session",
+            "cloud": true
+        },
+        "chatgpt_code": {
+            "display_name": "Coding Agent / Codex",
+            "role": "coding_agent",
+            "enabled": true,
+            "status": "configured",
+            "responsibilities": [
+                "javascript",
+                "threejs",
+                "node",
+                "websocket",
+                "networking",
+                "runtime",
+                "browser",
+                "mobile",
+                "testing",
+                "debugging",
+                "content_runtime_bridge"
+            ],
+            "credit_policy": {
+                "minimize_usage": true,
+                "automatic_retry": false,
+                "image_analysis": false
+            },
+            "provider": "codex_cli",
+            "command": "codex",
+            "engine": "Codex CLI account session",
+            "cloud": true
+        }
+    }
+}

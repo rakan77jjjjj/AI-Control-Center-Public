@@ -1,0 +1,45 @@
+{
+    "system_name": "AI-Control-Center",
+    "ui": {
+        "language": "ar",
+        "direction": "rtl",
+        "theme": "dark"
+    },
+    "server": {
+        "host": "127.0.0.1",
+        "port": 4177
+    },
+    "operation_mode": "safe",
+    "credit_saver": {
+        "enabled": true,
+        "priority": "maximum",
+        "ai_translation": false,
+        "ai_screenshot_analysis": false,
+        "automatic_ai_reviews": false,
+        "automatic_ai_retries": false,
+        "send_full_project_context": false
+    },
+    "local_first": {
+        "enabled": true,
+        "local_logs": true,
+        "local_memory": true,
+        "local_backups": true,
+        "local_git": true,
+        "remote_git_push": false,
+        "cloud_upload": false
+    },
+    "safety": {
+        "emergency_stop_enabled": true,
+        "backup_before_major_change": true,
+        "allow_delete_without_approval": false,
+        "allow_outside_project_access": false,
+        "stop_repeated_failures": true,
+        "manual_visual_check": true
+    },
+    "approvals": {
+        "major_changes": true,
+        "file_deletion": true,
+        "outside_project": true,
+        "large_task": true
+    }
+}

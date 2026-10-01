@@ -1,0 +1,15 @@
+﻿{
+    "claude_design": {
+        "local_limit": 0,
+        "used": 0,
+        "context_reserve": 5000,
+        "output_reserve": 2000
+    },
+
+    "chatgpt_code": {
+        "local_limit": 0,
+        "used": 0,
+        "context_reserve": 4500,
+        "output_reserve": 1800
+    }
+}

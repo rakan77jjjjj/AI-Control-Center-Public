@@ -1,0 +1,8 @@
+{
+    "id": "control_center",
+    "name": "AI Control Center",
+    "path": ".",
+    "type": "tooling",
+    "enabled": true,
+    "readOnly": false
+}

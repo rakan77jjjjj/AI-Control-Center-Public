@@ -1,0 +1,10 @@
+{
+    "openai": {
+        "model": "cli-account-default",
+        "agent_id": "chatgpt_code"
+    },
+    "anthropic": {
+        "model": "cli-account-default",
+        "agent_id": "claude_design"
+    }
+}
